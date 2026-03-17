@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode, useCallback } from 'react';
+import React, { ReactNode, useCallback, useState } from 'react';
 import { Logo } from '@gitroom/frontend/components/new-layout/logo';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 const ModeComponent = dynamic(
@@ -49,6 +49,7 @@ const jakartaSans = Plus_Jakarta_Sans({
 
 export const LayoutComponent = ({ children }: { children: ReactNode }) => {
   const fetch = useFetch();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { backendUrl, billingEnabled, isGeneral } = useVariables();
 
@@ -87,7 +88,7 @@ export const LayoutComponent = ({ children }: { children: ReactNode }) => {
             <ContinueProvider />
             <div
               className={clsx(
-                'flex flex-col min-h-screen min-w-screen text-newTextColor p-[12px]',
+                'flex flex-col min-h-screen min-w-screen text-newTextColor p-[12px] pt-[15px]',
                 jakartaSans.className
               )}
             >
@@ -97,25 +98,52 @@ export const LayoutComponent = ({ children }: { children: ReactNode }) => {
               ) : (
                 <div className="flex-1 flex gap-[8px]">
                   <Support />
-                  <div className="flex flex-col bg-newBgColorInner w-[80px] rounded-[12px]">
+                  {mobileMenuOpen && (
+                    <button
+                      type="button"
+                      aria-label="Fermer le menu"
+                      className="fixed inset-0 z-30 bg-black/55 lg:hidden"
+                      onClick={() => setMobileMenuOpen(false)}
+                    />
+                  )}
+                  <div
+                    className={clsx(
+                      'fixed inset-y-[12px] left-[12px] z-40 flex w-[280px] flex-col rounded-[20px] bg-[#0d1117] p-[14px] shadow-[0_18px_60px_rgba(0,0,0,0.45)] transition-transform duration-300 lg:sticky lg:top-[12px] lg:z-auto lg:h-[calc(100vh-24px)] lg:w-[240px] lg:min-w-[240px] lg:translate-x-0',
+                      mobileMenuOpen ? 'translate-x-0' : '-translate-x-[115%]'
+                    )}
+                  >
                     <div
                       className={clsx(
-                        'fixed h-full w-[64px] start-[17px] flex flex-1 top-0',
-                        user?.admin && 'pt-[60px] max-h-[1000px]:w-[500px]'
+                        'flex h-full flex-1 flex-col overflow-hidden rounded-[16px] bg-[#0d1117]',
+                        user?.admin && 'pt-[60px]'
                       )}
                     >
-                      <div className="flex flex-col h-full gap-[32px] flex-1 py-[12px]">
+                      <div className="flex h-full flex-col gap-[24px] flex-1 py-[8px]">
                         <Logo />
-                        <TopMenu />
+                        <div className="flex-1 overflow-y-auto px-[4px]">
+                          <TopMenu onNavigate={() => setMobileMenuOpen(false)} />
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div className="flex-1 bg-newBgLineColor rounded-[12px] overflow-hidden flex flex-col gap-[1px] blurMe">
-                    <div className="flex bg-newBgColorInner h-[80px] px-[20px] items-center">
-                      <div className="text-[24px] font-[600] flex flex-1">
+                    <div className="flex bg-newBgColorInner/80 backdrop-blur-xl min-h-[80px] px-[16px] lg:px-[20px] items-center border-b-2 border-b-transparent gap-[14px]" style={{borderImage: 'linear-gradient(90deg, #E8243C, #00D4AA) 1'}}>
+                      <button
+                        type="button"
+                        aria-label="Ouvrir le menu"
+                        className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[12px] border border-white/10 bg-white/5 text-white lg:hidden"
+                        onClick={() => setMobileMenuOpen(true)}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="3" y1="6" x2="21" y2="6" />
+                          <line x1="3" y1="12" x2="21" y2="12" />
+                          <line x1="3" y1="18" x2="21" y2="18" />
+                        </svg>
+                      </button>
+                      <div className="text-[20px] lg:text-[24px] font-[600] flex flex-1 min-w-0">
                         <Title />
                       </div>
-                      <div className="flex gap-[20px] text-textItemBlur">
+                      <div className="hidden md:flex gap-[20px] text-textItemBlur">
                         <StreakComponent />
                         <div className="w-[1px] h-[20px] bg-blockSeparator" />
                         <OrganizationSelector />
@@ -127,6 +155,12 @@ export const LayoutComponent = ({ children }: { children: ReactNode }) => {
                         <ChromeExtensionComponent />
                         <div className="w-[1px] h-[20px] bg-blockSeparator" />
                         <AttachToFeedbackIcon />
+                        <NotificationComponent />
+                      </div>
+                      <div className="flex md:hidden gap-[12px] text-textItemBlur">
+                        <div className="hover:text-newTextColor">
+                          <ModeComponent />
+                        </div>
                         <NotificationComponent />
                       </div>
                     </div>

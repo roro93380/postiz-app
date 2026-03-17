@@ -1,0 +1,16 @@
+services:
+  caddy:
+    profiles:
+      - public-proxy
+
+  postiz:
+    image: ghcr.io/gitroomhq/postiz-app:latest
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./tmp-env/.env:/app/.env:ro
+      - ./tmp-env/.env:/config/.env:ro
+
+  temporal:
+    volumes:
+      - ../../dynamicconfig:/etc/temporal/config/dynamicconfig:ro

@@ -77,7 +77,7 @@ export const SettingsPopup: FC<{
     if (getRef) {
       return;
     }
-    toast.show(t('profile_updated', 'Profile updated'));
+    toast.show(t('profile_updated', 'Profil mis \u00e0 jour'));
     close();
   }, []);
 
@@ -86,16 +86,16 @@ export const SettingsPopup: FC<{
   const t = useT();
   const list = useMemo(() => {
     const arr = [];
-    arr.push({ tab: 'global_settings', label: t('global_settings', 'Global Settings') });
+    arr.push({ tab: 'global_settings', label: t('global_settings', 'Param\u00e8tres g\u00e9n\u00e9raux') });
     // Populate tabs based on user permissions
     if (user?.tier?.team_members && isGeneral) {
-      arr.push({ tab: 'teams', label: t('teams', 'Teams') });
+      arr.push({ tab: 'teams', label: t('teams', '\u00c9quipes') });
     }
     if (user?.tier?.webhooks) {
       arr.push({ tab: 'webhooks', label: t('webhooks_1', 'Webhooks') });
     }
     if (user?.tier?.autoPost) {
-      arr.push({ tab: 'autopost', label: t('auto_post', 'Auto Post') });
+      arr.push({ tab: 'autopost', label: t('auto_post', 'Publication auto') });
     }
     if (user?.tier.current !== 'FREE') {
       arr.push({ tab: 'sets', label: t('sets', 'Sets') });
@@ -104,9 +104,9 @@ export const SettingsPopup: FC<{
       arr.push({ tab: 'signatures', label: t('signatures', 'Signatures') });
     }
     if (user?.tier?.public_api && isGeneral && showLogout) {
-      arr.push({ tab: 'api', label: t('developers', 'Developers') });
+      arr.push({ tab: 'api', label: t('developers', 'D\u00e9veloppeurs') });
     }
-    arr.push({ tab: 'approved_apps', label: t('approved_apps', 'Approved Apps') });
+    arr.push({ tab: 'approved_apps', label: t('approved_apps', 'Apps approuv\u00e9es') });
 
     return arr;
   }, [user, isGeneral, showLogout, t]);

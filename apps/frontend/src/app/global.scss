@@ -15,6 +15,82 @@ body * {
   outline: none !important;
 }
 
+/* ═══════════ CUSTOM BRAND OVERRIDES ═══════════ */
+
+/* Gradient accent bar at the very top of the page */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #E8243C, #00D4AA);
+  z-index: 99999;
+}
+
+/* Selection color override */
+::selection {
+  background: rgba(232, 36, 60, 0.3);
+  color: inherit;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 170, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 170, 0.5);
+}
+
+/* Calendar date headers - accent dot glow */
+.light .bg-newTableHeader {
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, rgba(232, 36, 60, 0.2), rgba(0, 212, 255, 0.2)) 1;
+}
+
+/* Buttons with .btnSub get gradient hover */
+.btnSub {
+  background: linear-gradient(135deg, #E8243C, #C41D32) !important;
+  transition: all 0.2s ease-out;
+}
+.btnSub:hover {
+  background: linear-gradient(135deg, #ff2d48, #E8243C) !important;
+  box-shadow: 0 4px 20px rgba(232, 36, 60, 0.4);
+}
+
+/* Menu shadow with brand tint */
+.menu-shadow {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(232, 36, 60, 0.05) !important;
+  border-radius: 12px;
+}
+
+/* SweetAlert modals get brand accent */
+.swal2-confirm {
+  background: linear-gradient(135deg, #E8243C, #C41D32) !important;
+}
+
+/* Focus rings use brand color */
+input:focus, textarea:focus, select:focus {
+  border-color: #00D4AA !important;
+  box-shadow: 0 0 0 2px rgba(0, 212, 170, 0.15) !important;
+}
+
+/* Link colors */
+a:not([class]) {
+  color: #00D4AA;
+}
+
+/* ═══════════ END CUSTOM BRAND OVERRIDES ═══════════ */
+
 .box {
   position: relative;
 }
@@ -100,7 +176,7 @@ body * {
   font-size: 14px;
   background-color: var(--new-bgColorInner);
   height: 42px;
-  border-radius: 8px;
+  border-radius: 10px;
   /* shared font styles */
   line-height: 1.2;
   /* clicking anywhere will focus the input */
@@ -116,7 +192,8 @@ body * {
 }
 
 .react-tags.is-active {
-  @apply border-customColor51;
+  border-color: #00D4AA;
+  box-shadow: 0 0 20px rgba(0, 212, 170, 0.15);
 }
 
 .react-tags.is-disabled {
@@ -318,7 +395,7 @@ body * {
 }
 //
 //:root {
-//  --copilot-kit-primary-color: #612ad5 !important;
+//  --copilot-kit-primary-color: #E8243C !important;
 //  --copilot-kit-background-color: #0b0f1c !important;
 //  --copilot-kit-separator-color: #1f2941 !important;
 //  --copilot-kit-contrast-color: #ffffff !important;
@@ -567,9 +644,8 @@ html[dir='rtl'] [dir='ltr'] {
 
 .ProseMirror .mention {
   font-weight: bold;
-  color: #ae8afc;
+    color: #00D4FF;
 }
-
 .ProseMirror ul,
 .preview ul {
   list-style: disc;
@@ -628,7 +704,8 @@ html[dir='rtl'] [dir='ltr'] {
 }
 
 .mantine-Overlay-root {
-  background: rgba(65, 64, 66, 0.3) !important;
+  background: rgba(10, 10, 10, 0.5) !important;
+  backdrop-filter: blur(4px);
 }
 
 .dropdown-menu {
@@ -670,7 +747,7 @@ html[dir='rtl'] [dir='ltr'] {
     background-color: var(--purple-light);
     border-radius: 0.4rem;
     box-decoration-break: clone;
-    color: #ae8afc;
+    color: #00D4FF;
     &::after {
       content: '\200B';
     }
@@ -727,12 +804,12 @@ html[dir='rtl'] [dir='ltr'] {
 }
 
 .blackGradBottomBg {
-  background: linear-gradient(180deg, #0e0e0e 0%, rgba(14, 14, 14, 0) 100%);
+  background: linear-gradient(180deg, #0a0a0a 0%, rgba(10, 10, 10, 0) 100%);
   rotate: 180deg;
 }
 
 .blackGradTopBg {
-  background: linear-gradient(180deg, #0e0e0e 0%, rgba(14, 14, 14, 0) 100%);
+  background: linear-gradient(180deg, #0a0a0a 0%, rgba(10, 10, 10, 0) 100%);
 }
 
 .billing-form input {

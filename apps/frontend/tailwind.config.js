@@ -113,6 +113,15 @@ module.exports = {
         youtubeButton: 'var(--youtube-button)',
         youtubeBgAction: 'var(--youtube-action-color)',
         youtubeSvg: 'var(--youtube-svg-border)',
+        accent: '#E8243C',
+        accentSecondary: '#00D4AA',
+        teal: '#00D4AA',
+        cardBg: 'var(--new-bgColorInner)',
+        surfaceBg: 'var(--new-bgColor)',
+      },
+      gradientColorStops: {
+        accent: '#E8243C',
+        accentSecondary: '#00D4AA',
       },
       gridTemplateColumns: {
         13: 'repeat(13, minmax(0, 1fr));',
@@ -143,6 +152,8 @@ module.exports = {
         greenToast: '0px 0px 50px rgba(60, 124, 90, 0.3)',
         menu: 'var(--menu-shadow)',
         previewShadow: 'var(--preview-box-shadow)',
+        accentGlow: '0 0 20px rgba(232, 36, 60, 0.15)',
+        cyanGlow: '0 0 20px rgba(0, 212, 255, 0.15)',
       },
       dropShadow: {
         glow: [

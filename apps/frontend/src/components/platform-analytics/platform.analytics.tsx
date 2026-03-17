@@ -91,7 +91,7 @@ export const PlatformAnalytics = () => {
     ) {
       arr.push({
         key: 7,
-        value: t('7_days', '7 Days'),
+        value: t('7_days', '7 jours'),
       });
     }
     if (
@@ -110,7 +110,7 @@ export const PlatformAnalytics = () => {
     ) {
       arr.push({
         key: 30,
-        value: t('30_days', '30 Days'),
+        value: t('30_days', '30 jours'),
       });
     }
     if (
@@ -120,7 +120,7 @@ export const PlatformAnalytics = () => {
     ) {
       arr.push({
         key: 90,
-        value: t('90_days', '90 Days'),
+        value: t('90_days', '90 jours'),
       });
     }
     return arr;
@@ -150,21 +150,21 @@ export const PlatformAnalytics = () => {
           <img src="/peoplemarketplace.svg" />
         </div>
         <div className="text-[48px]">
-          {t('can_t_show_analytics_yet', "Can't show analytics yet")}
+          {t('can_t_show_analytics_yet', 'Pas encore d\'analytics')}
           <br />
           {t(
             'you_have_to_add_social_media_channels',
-            'You have to add Social Media channels'
+            'Vous devez ajouter des comptes r\u00e9seaux sociaux'
           )}
         </div>
         <div className="text-[20px]">
-          {t('supported', 'Supported:')}
+          {t('supported', 'Support\u00e9s :')}
           {allowedIntegrations.map((p) => capitalize(p)).join(', ')}
         </div>
         <Button onClick={() => router.push('/launches')}>
           {t(
             'go_to_the_calendar_to_add_channels',
-            'Go to the calendar to add channels'
+            'Aller au calendrier pour ajouter des comptes'
           )}
         </Button>
       </div>

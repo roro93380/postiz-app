@@ -812,7 +812,7 @@ export const CalendarColumn: FC<{
       <div
         className={clsx(
           'relative flex flex-col flex-1 text-white rounded-[8px] min-h-[70px]',
-          canDrop && 'border border-[#612BD3]'
+          canDrop && 'border border-[#E8243C]'
         )}
       >
         <div
@@ -896,7 +896,7 @@ export const CalendarColumn: FC<{
               )}
               {display === 'day' && (
                 <div
-                  className={`w-full h-full rounded-[10px] py-[10px] flex-wrap hover:border hover:border-seventh flex justify-center items-center gap-[20px] opacity-30 grayscale hover:grayscale-0 hover:opacity-100`}
+                  className={`w-full h-full rounded-[10px] py-[10px] flex-wrap hover:border hover:border-seventh flex justify-center items-center gap-[20px] opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300`}
                 >
                   {integrations.map((selectedIntegrations) => (
                     <div

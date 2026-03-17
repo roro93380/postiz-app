@@ -1,0 +1,32 @@
+{$POSTIZ_DOMAIN} {
+    encode zstd gzip
+
+    root * /srv/static
+
+    @staticFiles file {path} {path}/index.html
+    handle @staticFiles {
+        file_server
+    }
+
+    handle /terms {
+        rewrite * /terms/index.html
+        file_server
+    }
+
+    handle /privacy {
+        rewrite * /privacy/index.html
+        file_server
+    }
+
+    handle {
+        reverse_proxy postiz:5000
+    }
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+    tls {$POSTIZ_EMAIL}
+}
